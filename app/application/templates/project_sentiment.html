@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    {% include 'left_nav_other.html' %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Content Body Start -->
+<div class="content-body section custom-scroll">
+
+    <div class="section-wrap section pt-120 pt-lg-80 pt-md-80 pt-sm-80 pt-xs-50 pb-120 pb-lg-80 pb-md-80 pb-sm-80 pb-xs-50">
+        <div class="container">
+            <div class="row">
+
+                <!-- Sentiment Analysis Section -->
+                <div class="col-lg-6 col-12 mb-sm-45 mb-xs-45">
+                    <div class="row">
+
+                        <!-- Sentiment Analysis Form -->
+                        <div class="col-lg-10 col-12 mb-45">
+                            <div class="comment-form">
+                                <form id="generate-question-form" action="" method="post" novalidate>
+                                    {{ form.hidden_tag() }}
+                                    <div class="row">
+                                        <div class="col-12 mb-30">{{ form.body(placeholder="Answer") }}</div>
+                                        <div class="col-12">{{ form.submit_review(type="submit", value="Sentiment Prediction") }}</div>
+                                    </div>
+                                     <p></p><p></p>
+                                    {% if reviewed %}
+                                        <p>Thank you. How about answering another question?</p>
+                                    {% endif %}
+                                    {% if form.prediction.data %}
+                                        <p class="form-messege">Your review was: {{ form.prediction.data }}.</p>
+                                        <p><h3>Is the prediction correct?</h3></p>
+                                            {{ form.submit_correct(type="submit", value="Yes") }}
+                                            {{ form.submit_incorrect(type="submit", value="No") }}
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+               <!-- Random Question Generation Section -->
+               <div class="col-lg-6 col-12 mb-sm-45 mb-xs-45">
+                   <div class="row">
+                       <div class="col-lg-10 col-12 mb-45">
+                           <div class="comment-form">
+                               <input type="submit" onclick="get_question()" value="New Question">
+                               <p></p>
+                               <p></p>
+                               <p class="form-messege" id="random-question">What are your thoughts on the final
+                               season of Game of Thrones?</p>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div><!-- Content Body End -->
+
+<!---- JavaScript ---->
+<script>
+    function get_question() {
+        $.ajax({
+            type: 'POST',
+            url: '/question',
+            success: function(response) {
+                document.getElementById('random-question').innerHTML=response;
+            },
+            error: function() {}})}
+</script>
+
+{% endblock %}

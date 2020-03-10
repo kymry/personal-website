@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    {% include 'left_nav_main.html' %}
+{% endblock %}
+
+{% block content %}
+    <!-- Content Body Start -->
+    <div class="content-body section">
+        
+        <!-- Full Page Start -->
+        <div id="fullpage">
+
+            {% include 'about.html' %}
+            {% include 'projects.html' %}
+            {% include 'thoughts.html' %}
+
+        </div><!-- Full Page End -->
+        
+    </div><!-- Content Body End -->
+{% endblock %}

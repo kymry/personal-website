@@ -1,0 +1,122 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Kymry Burwell</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../static/theme/assets/images/favicon.ico">
+
+    <!-- CSS ============================================ -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/theme/assets/css/bootstrap.min.css">
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="../static/theme/assets/css/fontawesome.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="../static/theme/assets/css/plugins.css">
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="../static/theme/assets/css/helper.css">
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="../static/theme/assets/css/style.css">
+    <!-- Modernizer JS -->
+    <script src="../static/theme/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+
+<div class="main-wrapper has-side-header">
+
+    <!-- Header Section Start -->
+    <div class="header-section section d-block d-lg-none">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+
+                <!-- Logo -->
+                <div class="header-logo col mt-40 mb-40"><a href="{{ url_for('home_routes.home') }}">Kymry Burwell・バーウェル　キムリー</a></div>
+                <!-- Toggle Button -->
+                <div class="header-toggle-btn col text-right"><button class="side-header-toggle"><span></span></button></div>
+
+            </div>
+        </div>
+    </div><!-- Header Section End -->
+
+    <!-- Side Header Overlay Start -->
+    <div class="side-menu-overlay"></div><!-- Side Header Overlay End -->
+
+    <!-- Side Header Start -->
+    <div class="side-header custom-scroll">
+
+        <!-- Side Header Inner Start -->
+        <div class="side-header-inner">
+            <button class="side-header-close d-block d-lg-none"><span></span></button>
+            <!-- Side Header Logo Start -->
+            <div class="side-header-logo pt-120 pt-lg-80 pt-md-80 pt-sm-80 pt-xs-50">
+                <a href="{{ url_for('home_routes.home') }}">
+                    <p><h3 class="block-title">Kymry Burwell</h3></p>
+                    <p>バーウェル　キムリー</p></a>
+            </div><!-- Side Header Logo End -->
+
+            <!-- ========== Left Navigation Menu ========== -->
+            {% block nav %}
+            {% endblock %}
+
+            <!-- Side Header Logo Start -->
+            <div class="side-header-footer pb-120 pb-lg-80 pb-md-80 pb-sm-80 pb-xs-50">
+
+                <!-- Side Header Contact Information -->
+                <div class="side-header-contact-info">
+                    <p>+1 512 299 6270</p>
+                    <p>kymry.burwell@gmail.com</p>
+                    <p><a href="../static/resume_kymry_burwell.pdf">resume</a></p>
+                </div>
+
+                <!-- Side Header Social -->
+                <div class="side-header-social">
+                    <a href="https://www.linkedin.com/in/kymryburwell"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://www.github.com/kymry"><i class="fa fa-github"></i></a>
+                </div>
+
+                <!-- Side Header Copyright -->
+                <div class="side-header-copyright">
+                    <p></p>
+                </div>
+
+            </div><!-- Side Header Footer End -->
+
+        </div><!-- Side Header Inner End -->
+
+    </div><!-- Side Header End -->
+
+    <!-- ========== SUBCLASS TEMPLATES ========== -->
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<!-- JS
+============================================ -->
+
+<!-- jQuery JS -->
+<script src="../static/theme/assets/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- Popper JS -->
+<script src="../static/theme/assets/js/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="../static/theme/assets/js/bootstrap.min.js"></script>
+<!-- Plugins JS -->
+<script src="../static/theme/assets/js/plugins.js"></script>
+<!-- Ajax Mail -->
+<script src="../static/theme/assets/js/ajax-mail.js"></script>
+<!-- Main JS -->
+<script src="../static/theme/assets/js/main.js"></script>
+<!-- Google Map Api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlZPf84AAVt8_FFN7rwQY5nPgB02SlTKs"></script>
+<!-- Google Map Activation -->
+<script src="../static/theme/assets/js/map.js"></script>
+
+</body>
+
+</html>
