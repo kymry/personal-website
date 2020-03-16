@@ -17,7 +17,7 @@ def sentiment():
 		sentiment = get_sentiment(request.form.get('prediction'),
 								  request.form.get('submit_correct'),
 								  request.form.get('submit_incorrect'))
-		entry = Sentiment(text=request.form.get('body'), sentiment=sentiment)
+		entry = Sentiment(text=request.form.get('body'), sentiment=sentiment, correct=True)
 		db.session.add(entry)
 		db.session.commit()
 		return redirect(url_for('sentiment_routes.sentiment', reviewed=True))

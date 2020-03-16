@@ -3,7 +3,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    DEBUG = False
+    DEBUG = True
     SECRET_KEY = os.environ.get('SECRET_KEY') or "6IxOGEa58UtIzWujwoTAIzzsb832OcLmr8V-mNSBoA4"
     #DATABASE = os.environ.get('DATABASE') or os.path.join(basedir, 'databases/astronomicaldata.db')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')

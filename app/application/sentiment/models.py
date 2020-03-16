@@ -1,6 +1,6 @@
 from sqlalchemy import func
 from app.application import db
-
+import datetime
 
 class Question(db.Model):
 	''' Store the randomly generated questions that are displayed to the user
@@ -24,6 +24,14 @@ class Sentiment(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	text = db.Column(db.Text, nullable=False)
 	sentiment = db.Column(db.Boolean, nullable=False)
+	correct = db.Column(db.Boolean, nullable=False)
+	date = db.Column(db.Date, server_default=func.now(), nullable=False)
+
+	@staticmethod
+	def get_accuracy_data():
+		accuracy = Sentiment.query.with_entities(Sentiment.correct, Sentiment.date).all()
+		print(accuracy)
+		return accuracy
 
 	def __repr__(self):
 		return '<Question {} is: {}>'.format(self.id, self.text)

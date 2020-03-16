@@ -58,11 +58,12 @@ def get_sentiment(prediction, correct, incorrect):
             correct (Bool): True if the prediction was correct (user input)
             incorrect (Bool): True if the prediction was incorrect (user input)
         '''
-        if prediction == 1 and correct:
+        print(correct, incorrect, prediction)
+        if prediction == 'positive' and correct:
                 return 1
-        elif prediction == 1 and incorrect:
+        elif prediction == 'positive' and incorrect:
                 return 0
-        elif prediction == 0 and correct:
+        elif prediction == 'negative' and correct:
                 return 0
         return 1
 
