@@ -31,6 +31,17 @@
 /*  01. Theme default CSS
 /*----------------------------------------*/
 
+/*--custom --*/
+#submit_1, #submit_2 {
+  display:inline-block;
+}
+
+.sentiment_question {
+  padding: 2em 0 0 0;
+
+}
+
+
 /*-- Google Font --*/
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,600,600i,800");
 /*-- Common Style --*/
