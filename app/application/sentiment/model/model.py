@@ -15,11 +15,12 @@ def preload_model():
         with open('application/sentiment/model/tokenizer.json') as f:
                 json_data = json.load(f)
                 tokenizer = tokenizer_from_json(json_data)
-        keras_model = tf.keras.models.load_model('application/sentiment/model/model.h5')
+        with open('application/sentiment/model/model.h5') as f:
+                keras_model = tf.keras.models.load_model(f)
 
 
 def preprocess_text(text):
-        ''' Returns the input cleaned. html, punctuation, numbers, characters and
+        ''' Returns the input text cleaned. html, punctuation, numbers, characters and
             extra white spaces are removed.
 
         Parameters:
@@ -58,12 +59,7 @@ def get_sentiment(prediction, correct, incorrect):
             correct (Bool): True if the prediction was correct (user input)
             incorrect (Bool): True if the prediction was incorrect (user input)
         '''
-        print(correct, incorrect, prediction)
-        if prediction == 'positive' and correct:
-                return 1
-        elif prediction == 'positive' and incorrect:
-                return 0
-        elif prediction == 'negative' and correct:
+        if (prediction == 'positive' and incorrect) or (prediction == 'negative' and correct):
                 return 0
         return 1
 

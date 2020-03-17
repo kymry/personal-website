@@ -30,7 +30,6 @@ class Sentiment(db.Model):
 	@staticmethod
 	def get_accuracy_data():
 		accuracy = Sentiment.query.with_entities(Sentiment.correct, Sentiment.date).all()
-		print(accuracy)
 		return accuracy
 
 	def __repr__(self):
