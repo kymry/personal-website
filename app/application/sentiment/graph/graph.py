@@ -11,3 +11,4 @@ def calcululate_model_accuracy(accuray):
 	    	accuracy List((Bool, Date)): A list of tuples of predictions. Date is the date of the prediction,
 	    							 	Bool is True if the prediction was correct, False otherwise.
 	'''
+	pass

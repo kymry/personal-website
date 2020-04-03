@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from app.application.sentiment.forms import SentimentPredictionForm
-from app.application.sentiment.model.model import predict, get_sentiment
+from .forms import SentimentPredictionForm
+from .model.model import predict, get_sentiment
+from .models import db, Sentiment, Question
 
 
 bp = Blueprint('sentiment_routes', __name__)
@@ -12,8 +13,6 @@ def sentiment():
 
 	# user submitted prediction feedback
 	if (request.form.get('submit_correct') or request.form.get('submit_incorrect')) and form.validate_on_submit():
-		from app.application.sentiment.models import Sentiment
-		from app.application import db
 		sentiment = get_sentiment(request.form.get('prediction'),
 								  request.form.get('submit_correct'),
 								  request.form.get('submit_incorrect'))
@@ -35,7 +34,6 @@ def sentiment():
 def question():
 	''' Returns a random question from the Question database
 	'''
-	from app.application.sentiment.models import Question
 	question = Question.random()
 	return (question, 200) if question else 500
 

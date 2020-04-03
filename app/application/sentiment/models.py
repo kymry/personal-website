@@ -1,6 +1,12 @@
 from sqlalchemy import func
-from app.application import db
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 import datetime
+
+
+db = SQLAlchemy()
+migrate = Migrate()
+
 
 class Question(db.Model):
 	''' Store the randomly generated questions that are displayed to the user
@@ -25,7 +31,7 @@ class Sentiment(db.Model):
 	text = db.Column(db.Text, nullable=False)
 	sentiment = db.Column(db.Boolean, nullable=False)
 	correct = db.Column(db.Boolean, nullable=False)
-	date = db.Column(db.Date, server_default=func.now(), nullable=False)
+	date = db.Column(db.DateTime, default=datetime.datetime.utcnow, nullable=False)
 
 	@staticmethod
 	def get_accuracy_data():

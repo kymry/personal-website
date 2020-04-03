@@ -1,8 +1,13 @@
+import os
+import re
+import json
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # suppress TF warnings
+dirname = os.path.dirname(__file__)
+
 import tensorflow as tf
 from keras.preprocessing.sequence import pad_sequences
 from keras_preprocessing.text import tokenizer_from_json
-import re
-import json
 
 
 def preload_model():
@@ -12,11 +17,10 @@ def preload_model():
         '''
         global tokenizer
         global keras_model
-        with open('application/sentiment/model/tokenizer.json') as f:
+        with open(os.path.join(dirname, 'tokenizer.json')) as f:
                 json_data = json.load(f)
                 tokenizer = tokenizer_from_json(json_data)
-        with open('application/sentiment/model/model.h5') as f:
-                keras_model = tf.keras.models.load_model(f)
+        keras_model = tf.keras.models.load_model(os.path.join(dirname, 'model.h5'))
 
 
 def preprocess_text(text):

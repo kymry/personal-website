@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from app.application.errors import bp
+from . import bp
 
 @bp.errorhandler(404)
 def page_not_found_error(error):
