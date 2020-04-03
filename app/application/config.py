@@ -2,11 +2,11 @@ import os
 from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(basedir, '.env'))
+load_dotenv(os.path.join(os.path.abspath('.'), '.env'))
 user = os.environ['MYSQL_USER']
-password = os.environ['MYSQL_PASS']
+password = os.environ['MYSQL_PASSWORD']
 host = os.environ['MYSQL_HOST']
-database = os.environ['MYSQL_DB']
+database = os.environ['MYSQL_DATABASE']
 port = os.environ['MYSQL_PORT']
 
 

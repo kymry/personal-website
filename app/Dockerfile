@@ -8,7 +8,9 @@ COPY application/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 RUN pip3 install gunicorn pymysql
 
-COPY app app
+COPY application application
+COPY migrations migrations
+COPY wsgi.py wsgi.py
 COPY boot.sh ./
 RUN chmod +x boot.sh
 
