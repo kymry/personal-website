@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+
 load_dotenv(os.path.join(os.path.abspath('.'), '.env'))
 user = os.environ['MYSQL_USER']
 password = os.environ['MYSQL_PASSWORD']

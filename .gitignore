@@ -1,6 +1,6 @@
-.DS_STORE
+*.DS_STORE
 /venv
-.idea/
+*.idea/
 *__pycache__*
 *.h5
 *.hdf5
