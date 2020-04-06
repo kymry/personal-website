@@ -9,9 +9,6 @@ def create_app():
 
 	app = Flask(__name__)
 	app.config.from_object(Config)
-	from .sentiment.models import db, migrate
-	db.init_app(app)
-	migrate.init_app(app, db)
 
 	with app.app_context():
 		app.register_blueprint(personal_bp)

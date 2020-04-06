@@ -2,8 +2,10 @@ import os
 import re
 import json
 
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # suppress TF warnings
 dirname = os.path.dirname(__file__)
+
 
 import tensorflow as tf
 from keras.preprocessing.sequence import pad_sequences
@@ -66,4 +68,3 @@ def get_sentiment(prediction, correct, incorrect):
         if (prediction == 'positive' and incorrect) or (prediction == 'negative' and correct):
                 return 0
         return 1
-

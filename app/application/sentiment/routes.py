@@ -12,6 +12,7 @@ def sentiment():
 
 	# user submitted prediction feedback
 	if (request.form.get('submit_correct') or request.form.get('submit_incorrect')) and form.validate_on_submit():
+		
 		sentiment = get_sentiment(request.form.get('prediction'),
 								  request.form.get('submit_correct'),
 								  request.form.get('submit_incorrect'))
@@ -35,6 +36,6 @@ def sentiment():
 def question():
 	''' Returns a random question from the Question database
 	'''
-	question = Question.random()
+	question = requests.get("http://localhost:5001/question")
 	return (question, 200) if question else 500
 
