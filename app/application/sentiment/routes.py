@@ -1,7 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+import requests
 from .forms import SentimentPredictionForm
-from .model.model import predict, get_sentiment
-from .models import db, Sentiment, Question
 
 
 bp = Blueprint('sentiment_routes', __name__)
@@ -23,7 +22,9 @@ def sentiment():
 
 	# user submitted review
 	if request.form.get('submit_review') and form.validate_on_submit():
-		prediction = predict(request.form.get('body'))
+		review = {"review": request.form.get('body')}
+		prediction = requests.post("http://localhost:5001/sentiment", json=review)
+		# TODO error handling
 		form.prediction.data = prediction
 		return render_template('project_sentiment.html', form=form)
 
