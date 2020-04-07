@@ -1,1 +1,1 @@
-FLASK_APP=app/wsgi.py
+FLASK_APP=wsgi.py

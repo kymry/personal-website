@@ -1,10 +1,15 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+import requests
+import json
 from .forms import SentimentPredictionForm
-from .model.model import predict, get_sentiment
-from .models import db, Sentiment, Question
 
 
-bp = Blueprint('sentiment_routes', __name__)
+bp = Blueprint('routes', __name__)
+
+
+@bp.route('/', methods=['GET'])
+def home():
+    return render_template('home.html')
 
 
 @bp.route('/sentiment', methods=['GET', 'POST'])
@@ -13,18 +18,19 @@ def sentiment():
 
 	# user submitted prediction feedback
 	if (request.form.get('submit_correct') or request.form.get('submit_incorrect')) and form.validate_on_submit():
-		sentiment = get_sentiment(request.form.get('prediction'),
-								  request.form.get('submit_correct'),
-								  request.form.get('submit_incorrect'))
-		entry = Sentiment(text=request.form.get('body'), sentiment=sentiment, correct=True)
-		db.session.add(entry)
-		db.session.commit()
-		return redirect(url_for('sentiment_routes.sentiment', reviewed=True))
+		sentiment = {'prediction': request.form.get('prediction'),
+					 'submit_correct': request.form.get('submit_correct'),
+					 'submit_incorrect': request.form.get('submit_incorrect'),
+					 'review': request.form.get('body')}
+		requests.post("http://localhost:5001/prediction", json=sentiment)
+		return redirect(url_for('routes.sentiment', reviewed=True))
 
 	# user submitted review
 	if request.form.get('submit_review') and form.validate_on_submit():
-		prediction = predict(request.form.get('body'))
-		form.prediction.data = prediction
+		review = {"review": request.form.get('body')}
+		response = requests.post("http://localhost:5001/sentiment", json=review)
+		if response.status_code == 200:
+			form.prediction.data = response.json()
 		return render_template('project_sentiment.html', form=form)
 
 	return render_template('project_sentiment.html', form=form, reviewed=request.args.get('reviewed'))
@@ -34,6 +40,7 @@ def sentiment():
 def question():
 	''' Returns a random question from the Question database
 	'''
-	question = Question.random()
+	response = requests.get("http://localhost:5001/question")
+	question = response.json()
 	return (question, 200) if question else 500
 
