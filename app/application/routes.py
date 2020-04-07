@@ -40,6 +40,7 @@ def sentiment():
 def question():
 	''' Returns a random question from the Question database
 	'''
-	question = requests.get("http://localhost:5001/question")
+	response = requests.get("http://localhost:5001/question")
+	question = response.json()
 	return (question, 200) if question else 500
 
