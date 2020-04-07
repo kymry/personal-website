@@ -1,5 +1,5 @@
 from application import create_app
-from application.sentiment.model import model
+from application.model import model
 
 
 model.preload_model()

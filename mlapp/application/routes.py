@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify, request
-from .model.model import predict
+from flask import Blueprint, jsonify, request, Response
+from .model.model import predict, get_true_sentiment
 from .errors import error_response
 from .models import Question, Sentiment, db
 
@@ -20,10 +20,12 @@ def get_sentiment():
 def add_sentiment():
 	data = request.get_json()
 	if data is not None:
-		sentiment = get_sentiment(data['prediction'], data['submit_correct'], data['submit_incorrect'])
-		entry = Sentiment(text=request.form.get('body'), sentiment=sentiment, correct=True)
+		sentiment = get_true_sentiment(data['prediction'], data['submit_correct'], data['submit_incorrect'])
+		entry = Sentiment(text=data['review'], sentiment=sentiment, correct=True)
 		db.session.add(entry)
 		db.session.commit()
+		return Response(response='success', status=200)
+	return error_response(400, 'Something went wrong')
 
 
 @bp.route('/question', methods=['GET'])

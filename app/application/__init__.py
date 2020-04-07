@@ -1,8 +1,7 @@
 from flask import Flask
 from .config import Config
-from .personal.routes import bp as personal_bp
 from .errors.routes import bp as error_bp
-from .sentiment.routes import bp as sentiment_bp
+from .routes import bp as routes_bp
 
 
 def create_app():
@@ -11,8 +10,7 @@ def create_app():
 	app.config.from_object(Config)
 
 	with app.app_context():
-		app.register_blueprint(personal_bp)
 		app.register_blueprint(error_bp)
-		app.register_blueprint(sentiment_bp)
+		app.register_blueprint(routes_bp)
 
 		return app

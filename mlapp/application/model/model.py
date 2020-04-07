@@ -57,7 +57,7 @@ def predict(review):
         return 'positive' if sentiment[0] == 1 else 'negative'
 
 
-def get_sentiment(prediction, correct, incorrect):
+def get_true_sentiment(prediction, correct, incorrect):
         ''' Returns the correct sentiment of the review, based on user input
 
         Parameters:
